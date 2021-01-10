@@ -21,7 +21,7 @@ public class Table implements Runnable {
                 e.printStackTrace();
             }
             if(k == 20){
-                System.out.println(tableName+" got up from the table.");
+                order.print(tableName+" got up from the table.");
                 order.deleteOrder(tableName);
                 break;
             }
@@ -31,7 +31,7 @@ public class Table implements Runnable {
                     order.deleteOrder(tableName);
                     order.raiseHand(tableName);
                 }else{
-                    System.out.println(tableName+ " ate the order.");
+                    order.print(tableName+ " ate the order.");
                     order.deleteOrder(tableName);
                     break;
                 }

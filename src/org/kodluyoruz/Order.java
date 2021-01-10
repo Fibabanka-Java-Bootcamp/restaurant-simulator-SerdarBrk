@@ -21,7 +21,7 @@ public class Order {
     public void raiseHand(String order){
         synchronized (this){
             raiseHand.put(order,false);
-            System.out.println(order+" raised hand.");
+            print(order+" raised hand.");
         }
     }
     public void takeTheOrder(String waitressName){
@@ -32,13 +32,13 @@ public class Order {
                         if(mE.getValue().equals(false)){
                             takeTheOrder.put(mE.getKey(),false);
                             raiseHand.put(mE.getKey(),true);
-                            System.out.println(waitressName+" has taken order of "+ mE.getKey());
+                            print(waitressName+" has taken order of "+ mE.getKey());
                             break;
                         }
                     }
                 }
             }catch (ConcurrentModificationException ex){
-                System.out.println("Customer got up from the table.");
+                print("No customers are waiting.");
             }
 
         }
@@ -51,13 +51,13 @@ public class Order {
                         if(mE.getValue().equals(false)){
                             preparingAnOrder.put(mE.getKey(),false);
                             takeTheOrder.put(mE.getKey(),true);
-                            System.out.println(chefName+" is preparing order of "+mE.getKey());
+                            print(chefName+" is preparing order of "+mE.getKey());
                             break;
                         }
                     }
                 }
             }catch (ConcurrentModificationException ex){
-                System.out.println("Customer got up from the table.");
+                print("There is no order to be taken.");
             }
         }
     }
@@ -75,7 +75,7 @@ public class Order {
                     }
                 }
             }catch (ConcurrentModificationException ex){
-                System.out.println("Customer got up from the table.");
+                System.out.println("There is no order to be finished");
             }
         }
     }
@@ -85,7 +85,9 @@ public class Order {
     public HashMap<String,Boolean> getTakeTheOrder() {return takeTheOrder;}
     public HashMap<String,Boolean> getPreparingAnOrder() {return preparingAnOrder;}
     public HashMap<String,Boolean> getFinished() {return finished;}
-
+    public synchronized void print(String text){
+        System.out.println(text);
+    }
     public void deleteOrder(String order){
         raiseHand.remove(order);
         takeTheOrder.remove(order);
