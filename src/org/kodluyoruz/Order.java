@@ -38,7 +38,7 @@ public class Order {
                     }
                 }
             }catch (ConcurrentModificationException ex){
-                print("No customers are waiting.");
+                print("("+waitressName+")"+ " No customers are waiting.");
             }
 
         }
@@ -57,7 +57,7 @@ public class Order {
                     }
                 }
             }catch (ConcurrentModificationException ex){
-                print("There is no order to be taken.");
+                print("("+chefName+")"+ " There is no order to be taken.");
             }
         }
     }
@@ -75,7 +75,7 @@ public class Order {
                     }
                 }
             }catch (ConcurrentModificationException ex){
-                System.out.println("There is no order to be finished");
+                System.out.println("("+waitressName+")"+ " There is no order to be finished");
             }
         }
     }
