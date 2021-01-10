@@ -16,17 +16,26 @@ public class Table implements Runnable {
         while(order.getRaiseHand().containsKey(tableName)){
 
             try {
-                Thread.sleep(1000);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            if(k == 1000){
+            if(k == 20){
                 System.out.println(tableName+" got up from the table.");
+                order.deleteOrder(tableName);
                 break;
             }
             if(order.getFinished().containsKey(tableName)){
-                System.out.println(tableName+ " ate the order.");
-                order.deleteOrder(tableName);
+                long rnd=Math.round(Math.random());
+                if(rnd == 1){
+                    order.deleteOrder(tableName);
+                    order.raiseHand(tableName);
+                }else{
+                    System.out.println(tableName+ " ate the order.");
+                    order.deleteOrder(tableName);
+                    break;
+                }
+
             }
             k++;
 
