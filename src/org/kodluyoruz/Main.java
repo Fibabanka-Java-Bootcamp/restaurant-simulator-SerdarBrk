@@ -27,10 +27,8 @@ public class Main {
 
 
 
-
-
-        for(int i=0;i<=50;i++){
-            executorTable.submit(new Table(order,"Table"+i));
+        for(int i=1;i<=50;i++){
+            executorTable.submit(new Table(order,"Customer"+i));
         }
 
         chefThread1.join();

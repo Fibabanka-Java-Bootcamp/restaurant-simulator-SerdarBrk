@@ -35,11 +35,8 @@ public class Table implements Runnable {
                     order.deleteOrder(tableName);
                     break;
                 }
-
             }
             k++;
-
         }
-
     }
 }
